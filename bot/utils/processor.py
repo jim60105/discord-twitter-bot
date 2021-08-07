@@ -420,7 +420,11 @@ class Processor:
                     webhook.send(
                         content=self.discord_config.get("custom_message", "").format(
                             user=self.user, text=self.text, url=self.url
-                        )
+                        ),
+                    )
+                for url in self.status_tweet["entities"]["urls"]:
+                    webhook.send(
+                        content=url["expanded_url"]
                     )
             except discord.errors.NotFound as error:
                 print(
