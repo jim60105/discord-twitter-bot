@@ -390,6 +390,10 @@ class Processor:
                     "https://twitter.com/" + self.status_tweet["retweeted_status"]["user"]["screen_name"],
                 )
             )
+        else:
+            self.embed.set_thumbnail(
+                url=self.status_tweet["user"]["profile_image_url_https"].replace("_normal", ""),
+            )
 
         self.embed.set_author(
             name=self.status_tweet["user"]["screen_name"],
