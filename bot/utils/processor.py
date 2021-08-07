@@ -380,6 +380,17 @@ class Processor:
             ),
         )
 
+        if "retweeted_status" in self.status_tweet:
+            self.embed.set_thumbnail(
+                url=self.status_tweet["retweeted_status"]["user"]["profile_image_url_https"].replace("_normal", ""),
+            )
+            self.embed.add_field(
+                name="Retweeted", value="[{}]({})".format(
+                    self.status_tweet["retweeted_status"]["user"]["name"],
+                    "https://twitter.com/" + self.status_tweet["retweeted_status"]["user"]["screen_name"],
+                )
+            )
+
         self.embed.set_author(
             name=self.status_tweet["user"]["screen_name"],
             url="https://twitter.com/" + self.status_tweet["user"]["screen_name"],
