@@ -385,7 +385,7 @@ class Processor:
                         ),
                     )
                 for url in self.status_tweet["entities"]["urls"]:
-                    if "https://twitter.com/i/web/status/" not in url:
+                    if "https://twitter.com/i/web/status/" not in url["expanded_url"]:
                         webhook.send(
                             content=url["expanded_url"]
                         )
