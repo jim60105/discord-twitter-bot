@@ -385,9 +385,9 @@ class Processor:
                         ),
                     )
                 for url in self.status_tweet["entities"]["urls"]:
-                    if "https://twitter.com/i/web/status/" not in url["expanded_url"]:
+                    if "https://twitter.com/i/web/status/" not in url.unwound.url:
                         webhook.send(
-                            content=url["expanded_url"]
+                            content=url.unwound.url
                         )
             except discord.errors.NotFound as error:
                 print(
