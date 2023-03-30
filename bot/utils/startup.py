@@ -47,7 +47,7 @@ def bordered(*columns: Sequence[str], ascii_border: bool = False) -> str:
         for colidx, column in enumerate(line):
             width = widths[colidx]
             done = colsdone[colidx]
-            if column is None:
+            if column == None:
                 if not done:
                     # bottom border of column
                     column = "{HZ}" * width
@@ -145,9 +145,9 @@ def pprint(config):
             ("Include Attachment", instance.get("IncludeAttachment", True)),
             ("Include Quote", instance.get("IncludeQuote", True)),
             ("Create Embed", instance.get("CreateEmbed", True)),
-            ("Custom Message", True if instance.get("custom_message", "") is not "" else False),
-            ("Keyword Sets", True if instance.get("keyword_sets", "") is not "" else False),
-            ("Blackword Sets", True if instance.get("blackword_sets", "") is not "" else False),
+            ("Custom Message", True if instance.get("custom_message", "") != "" else False),
+            ("Keyword Sets", True if instance.get("keyword_sets", "") != "" else False),
+            ("Blackword Sets", True if instance.get("blackword_sets", "") != "" else False),
         )
         for option, enabled in options:
             enabled = on_symbol if enabled else off_symbol

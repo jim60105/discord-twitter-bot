@@ -25,7 +25,7 @@ class CustomFormatter:
         if isinstance(value, str):
             if conversion == "s":
                 return value.lower()
-            elif conversion is None:
+            elif conversion == None:
                 return value
             elif conversion == "b":
                 return self.to_bool(value)
@@ -71,7 +71,7 @@ with open(CONFIG_YAML, "r") as stream:
 
 
 config["Discord"] = [
-    {k: v for k, v in instance.items() if v is not None} for instance in config["Discord"]
+    {k: v for k, v in instance.items() if v != None} for instance in config["Discord"]
 ]
 
 auth = OAuthHandler(config["Twitter"]["consumer_key"], config["Twitter"]["consumer_secret"])

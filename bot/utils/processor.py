@@ -54,7 +54,7 @@ def worth_posting_follow(
                 worth_posting = True
     else:
         worth_posting = True
-        if not include_user_reply and in_reply_to_twitter_id is not None:
+        if not include_user_reply and in_reply_to_twitter_id != None:
             worth_posting = False
 
     if not include_retweet:
@@ -95,17 +95,17 @@ class Processor:
 
     def worth_posting_location(self):
         if (
-            self.status_tweet.get("coordinates", None) is not None
-            and self.status_tweet["coordinates"].get("coordinates", None) is not None
+            self.status_tweet.get("coordinates", None) != None
+            and self.status_tweet["coordinates"].get("coordinates", None) != None
         ):
             coordinates = [self.status_tweet["coordinates"]["coordinates"]]
         else:
             coordinates = []
 
         if (
-            self.status_tweet.get("place", None) is not None
-            and self.status_tweet["place"].get("bounding_box", None) is not None
-            and self.status_tweet["place"]["bounding_box"].get("coordinates", None) is not None
+            self.status_tweet.get("place", None) != None
+            and self.status_tweet["place"].get("bounding_box", None) != None
+            and self.status_tweet["place"]["bounding_box"].get("coordinates", None) != None
         ):
             tmp = self.status_tweet["place"]["bounding_box"]["coordinates"]
         else:
@@ -171,7 +171,7 @@ class Processor:
             self.text = self.status_tweet["text"]
 
         for url in self.status_tweet["entities"].get("urls", []):
-            if url["expanded_url"] is None:
+            if url["expanded_url"] == None:
                 continue
             self.text = self.text.replace(
                 url["url"], "[%s](%s)" % (url["display_url"], url["expanded_url"])
@@ -221,7 +221,7 @@ class Processor:
             if self.status_tweet["quoted_status"].get("text"):
                 text = self.status_tweet["quoted_status"]["text"]
                 for url in self.status_tweet["quoted_status"]["entities"].get("urls", []):
-                    if url["expanded_url"] is None:
+                    if url["expanded_url"] == None:
                         continue
                     text = text.replace(
                         url["url"], "[%s](%s)" % (url["display_url"], url["expanded_url"])
